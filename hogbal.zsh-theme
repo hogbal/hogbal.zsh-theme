@@ -17,7 +17,7 @@ function virtualenv_info {
 
 function prompt_char {
     git branch >/dev/null 2>/dev/null && echo '⠠⠵' && return
-    echo '○'
+    echo '$'
 }
 
 function box_name {
@@ -26,8 +26,8 @@ function box_name {
   echo "${box:gs/%/%%}"
 }
 
-PROMPT="╭─(%{$FG[040]%}%n%{$reset_color%}@%{$FG[033]%}$(box_name)%{$reset_color%})-[%{$terminfo[bold]$FG[226]%}%~%{$reset_color%}\$(git_prompt_info)\$(ruby_prompt_info)]
-╰─\$(virtualenv_info)\$(prompt_char) "
+PROMPT="┌──(%{$FG[040]%}%n%{$reset_color%}@%{$FG[033]%}$(box_name)%{$reset_color%})-[%{$terminfo[bold]$FG[226]%}%~%{$reset_color%}\$(git_prompt_info)\$(ruby_prompt_info)]
+└─\$(virtualenv_info)\$(prompt_char) "
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$FG[239]%}on%{$reset_color%} %{$fg[255]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
