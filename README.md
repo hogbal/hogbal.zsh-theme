@@ -9,7 +9,7 @@
 ## 참고
 홈 디렉토리에 .box-name 파일을 생성한 후 값을 넣어두면 원하는 값 입력가능
 
-![image1](https://github.com/hogbal/hogbal.zsh-theme/blob/main/src/image1.png)
+![img1](https://github.com/hogbal/hogbal.zsh-theme/blob/main/src/img1.png)
 
 
-![image2](https://github.com/hogbal/hogbal.zsh-theme/blob/main/src/image2.png)
+![img2](https://github.com/hogbal/hogbal.zsh-theme/blob/main/src/img2.png)
