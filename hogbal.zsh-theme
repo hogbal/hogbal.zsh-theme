@@ -5,16 +5,6 @@
 
 # You can set your computer name in the ~/.box-name file if you want.
 
-context() {
-  local user="$(whoami)"
-
-  if [[ $CONDA_DEFAULT_ENV == "" ]];then
-    [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}"
-  else
-    [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "%F{green}($CONDA_DEFAULT_ENV)"
-  fi
-}
-
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
@@ -31,7 +21,7 @@ function box_name {
 }
 
 PROMPT="┌──(%{$FG[040]%}%n%{$reset_color%}@%{$FG[033]%}$(box_name)%{$reset_color%})-[%{$terminfo[bold]$FG[226]%}%~%{$reset_color%}\$(git_prompt_info)\$(ruby_prompt_info)]
-└─\$(context)${reset_color}\$(prompt_char) "
+└─\${reset_color}\$(prompt_char) "
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$FG[239]%}on%{$reset_color%} %{$fg[255]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
