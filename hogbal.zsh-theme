@@ -1,15 +1,9 @@
-# fino-time.zsh-theme
+# hogbal.zsh-theme
+# The theme refers to fino-time.zsh-theme.
 
 # Use with a dark background and 256-color terminal!
-# Meant for people with RVM and git. Tested only on OS X 10.7.
 
 # You can set your computer name in the ~/.box-name file if you want.
-
-# Borrowing shamelessly from these oh-my-zsh themes:
-#   bira
-#   robbyrussell
-#
-# Also borrowing from http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 
 context() {
   local user="$(whoami)"
