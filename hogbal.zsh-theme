@@ -6,24 +6,25 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}%1{✗%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
-# Docker
-DOCKER_THEME_PROMPT="%{$fg_bold[blue]%}Docker%{$reset_color%}"
-DOCKER_LOCAL_COLOR="green"
-DOCKER_REMOTE_COLOR="red"
+get_host() {
+  local _remote="$REMOTE_HOST"
+  local _remote_local="%{$fg_bold[$REMOTE_LOCAL_COLOR]%}local%{$reset_color%}"
+  local _remote_remote="%{$fg_bold[$REMOTE_REMOTE_COLOR]%}$_remote%{$reset_color%}"
+  local _remote_status="$_remote_remote"
 
-get_docker_host() {
-  local _docker="$DOCKER_HOST"
-  local _docker_local="%{$fg_bold[$DOCKER_LOCAL_COLOR]%}local%{$reset_color%}"
-  local _docker_remote="%{$fg_bold[$DOCKER_REMOTE_COLOR]%}$_docker%{$reset_color%}"
-  local _docker_status="$_docker_remote"
-
-  if [[ -z "$_docker" ]]; then
-    _docker_status="$_docker_local"
+  if [[ -z "$_remote" ]]; then
+    _remote_status="$_remote_local"
   fi
-  echo "($DOCKER_THEME_PROMPT : $_docker_status)"
+  echo "($REMOTE_THEME_PROMPT : $_remote_status)"
 }
 
-RPROMPT='$(get_docker_host)'
+REMOTE_LOCAL_COLOR="green"
+REMOTE_REMOTE_COLOR="red"
 
-# Additional settings for the prompt
-# PROMPT='%n@%m %{$fg[green]%}%~ %{$reset_color%}%(!.#.$) '
+if [ -n "$ZSH_REMOTE" ]; then
+  REMOTE_THEME_PROMPT="%{$fg_bold[blue]%}SSH%{$reset_color%}"
+else
+  REMOTE_THEME_PROMPT="%{$fg_bold[blue]%}Docker%{$reset_color%}"
+fi
+
+RPROMPT='$(get_host)'
