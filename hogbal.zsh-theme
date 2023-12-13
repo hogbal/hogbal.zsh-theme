@@ -1,31 +1,29 @@
-# hogbal.zsh-theme
-# The theme refers to fino-time.zsh-theme.
+PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%c%{$reset_color%}"
+PROMPT+=' $(git_prompt_info)'
 
-# Use with a dark background and 256-color terminal!
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}%1{✗%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
-# You can set your computer name in the ~/.box-name file if you want.
+# Docker
+DOCKER_THEME_PROMPT="%{$fg_bold[blue]%}Docker%{$reset_color%}"
+DOCKER_LOCAL_COLOR="green"
+DOCKER_REMOTE_COLOR="red"
 
-function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
+get_docker_host() {
+  local _docker="$DOCKER_HOST"
+  local _docker_local="%{$fg_bold[$DOCKER_LOCAL_COLOR]%}local%{$reset_color%}"
+  local _docker_remote="%{$fg_bold[$DOCKER_REMOTE_COLOR]%}$_docker%{$reset_color%}"
+  local _docker_status="$_docker_remote"
+
+  if [[ -z "$_docker" ]]; then
+    _docker_status="$_docker_local"
+  fi
+  echo "($DOCKER_THEME_PROMPT : $_docker_status)"
 }
 
-function prompt_char {
-    git branch >/dev/null 2>/dev/null && echo '⠠⠵' && return
-    echo '$'
-}
+RPROMPT='$(get_docker_host)'
 
-function box_name {
-  local box="${SHORT_HOST:-$HOST}"
-  [[ -f ~/.box-name ]] && box="$(< ~/.box-name)"
-  echo "${box:gs/%/%%}"
-}
-
-PROMPT="┌──(%{$FG[040]%}%n%{$reset_color%}@%{$FG[033]%}$(box_name)%{$reset_color%})-[%{$terminfo[bold]$FG[226]%}%~%{$reset_color%}\$(git_prompt_info)\$(ruby_prompt_info)]
-└─\${reset_color}\$(prompt_char) "
-
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$FG[239]%}on%{$reset_color%} %{$fg[255]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG[202]%}✘"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$FG[040]%}✔"
-ZSH_THEME_RUBY_PROMPT_PREFIX=" %{$FG[239]%}using%{$FG[243]%} ‹"
-ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
+# Additional settings for the prompt
+# PROMPT='%n@%m %{$fg[green]%}%~ %{$reset_color%}%(!.#.$) '

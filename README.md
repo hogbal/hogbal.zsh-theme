@@ -1,15 +1,7 @@
 # hogbal.zsh-theme
 
 내 마음대로 꾸며둔 oh-my-zsh 테마!
+robbyrussell 테마를 이용해서 변경했습니다!
 
-## 설치방법
-아래 명령어 실행 sudo 권한으로 실행하면x
-`sh install.sh`
-
-## 참고
-홈 디렉토리에 .box-name 파일을 생성한 후 값을 넣어두면 원하는 값 입력가능
-
-![img1](https://github.com/hogbal/hogbal.zsh-theme/blob/main/src/img1.png)
-
-
-![img2](https://github.com/hogbal/hogbal.zsh-theme/blob/main/src/img2.png)
+## 사용방법
+DOCKER_HOST 환경변수를 설정하면 됩니당
