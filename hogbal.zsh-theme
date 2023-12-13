@@ -22,7 +22,10 @@ REMOTE_LOCAL_COLOR="green"
 REMOTE_REMOTE_COLOR="red"
 
 if [[ -n "$ZSH_REMOTE" ]]; then
-  REMOTE_THEME_PROMPT="%{$fg_bold[blue]%}SSH%{$reset_color%}"
+#REMOTE_THEME_PROMPT="%{$fg_bold[blue]%}SSH%{$reset_color%}"
+  REMOTE_THEME_PROMPT="%{$fg_bold[blue]%}"
+  REMOTE_THEME_PROMPT+=$ZSH_REMOTE
+  REMOTE_THEME_PROMPT+="%{$reset_color%}"
 else
   REMOTE_THEME_PROMPT="%{$fg_bold[blue]%}Docker%{$reset_color%}"
 fi
