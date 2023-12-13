@@ -5,6 +5,7 @@ You can use the "ZSH_REMOTE" environment variable to tell if it's SSH or DOCKER,
 
 ## Usage
 `($ZSH_REMOTE : $REMOTE_HOST)`
+
 Because you enter the prompt as above, you need to set the value of the environment variable. If there is no value of "ZSH_REMOTE", "Docker" will be entered.
 
 - zsh local
